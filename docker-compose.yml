@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: pollpassword
+      POSTGRES_USER: postgres
+      POSTGRES_DB: polls
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+    container_name: polls-backend
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    working_dir: /app/poll_sys
+    env_file:
+      - /.env  # adjust path if needed
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:
