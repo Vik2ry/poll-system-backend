@@ -23,7 +23,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'https://poll-system-backend.onrender.com/'
+    'https://poll-system-backend-1.onrender.com/'
 ]
 
 STORAGES = {
