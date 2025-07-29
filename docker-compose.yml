@@ -21,7 +21,7 @@ services:
       - db
     volumes:
       - .:/app
-    working_dir: /app/poll_sys
+    working_dir: /app
     env_file:
       - /.env  # adjust path if needed
     command: >

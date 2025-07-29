@@ -1,6 +1,6 @@
 FROM python:3.10
 
-WORKDIR /app/poll_sys
+WORKDIR /app
 
 # Install Postgres client dev libraries
 RUN apt-get update && apt-get install -y \
