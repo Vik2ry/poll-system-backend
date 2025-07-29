@@ -2,9 +2,9 @@ set -o errexit
 
 pip install -r requirements.txt
 
-python poll_sys/manage.py collectstatic --no-input
+python manage.py collectstatic --no-input
 
-python poll_sys/manage.py migrate
+python manage.py migrate
 
 
 # if [[ $CREATE_SUPERUSER ]]
