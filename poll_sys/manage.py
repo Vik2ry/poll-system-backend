@@ -6,7 +6,8 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'poll_sys.settings')
+    settings_module = 'poll_sys.deployment_settings' if os.environ.get('RENDER_EXTERNAL_HOSTNAME') else 'poll_sys.settings'
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)   
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

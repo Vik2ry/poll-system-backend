@@ -16,7 +16,7 @@ import environ
 from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent 
+BASE_DIR = Path(__file__).resolve().parent.parent 
 
 # Load environment variables from .env file with environ package
 env = environ.Env()
@@ -154,3 +154,5 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+STATIC_ROOT = BASE_DIR/"staticfiles"

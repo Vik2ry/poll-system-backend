@@ -11,6 +11,8 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'poll_sys.settings')
+settings_module = 'poll_sys.deployment_settings' if os.environ.get('RENDER_EXTERNAL_HOSTNAME') else 'poll_sys.settings'
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'poll_sys.settings')
 
 application = get_asgi_application()
