@@ -13,4 +13,4 @@ then
 fi
 
 # Finally, start the server
-exec python manage.py runserver 0.0.0.0:8000
+exec gunicorn poll-system-backend-1.wsgi:application --bind 0.0.0.0:8000
