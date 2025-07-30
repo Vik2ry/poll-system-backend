@@ -27,13 +27,17 @@ DATABASES = {
     'default': env.db(),  # This reads DATABASE_URL
 }
 
-# Only require DATABASE_URL when not running collectstatic (or similar commands)
-if 'collectstatic' not in sys.argv:
+if 'collectstatic' in sys.argv:
     DATABASES = {
-        'default': env.db(),  # This reads DATABASE_URL
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'dummy.sqlite3',
+        }
     }
 else:
-    DATABASES = {}
+    DATABASES = {
+        'default': env.db(),  # Requires DATABASE_URL
+    }
 
 
 # Quick-start development settings - unsuitable for production
