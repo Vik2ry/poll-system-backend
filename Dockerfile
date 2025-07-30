@@ -5,6 +5,9 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y libpq-dev gcc \
     && pip install --upgrade pip
 
+COPY poll_sys/build.sh ./build.sh
+RUN chmod +x ./build.sh
+
 COPY requirements.txt .
 
 RUN pip install -r requirements.txt
@@ -16,4 +19,4 @@ WORKDIR /app/poll_sys
 EXPOSE 8000
 
 # Use build.sh as the container entrypoint script
-CMD ["/poll_sys/build.sh"]
+CMD ["./build.sh"]
