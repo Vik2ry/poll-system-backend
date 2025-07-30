@@ -14,7 +14,6 @@ from pathlib import Path
 import os
 import environ
 from datetime import timedelta
-import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent 
@@ -27,22 +26,6 @@ DATABASES = {
     'default': env.db(),  # This reads DATABASE_URL
 }
 
-# Set a dummy DB during build steps like collectstatic
-if 'collectstatic' in sys.argv:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'dummy.sqlite3',
-        }
-    }
-else:
-    # Only attempt to access env.db() when DATABASE_URL is actually set
-    try:
-        DATABASES = {
-            'default': env.db(),  # Requires DATABASE_URL
-        }
-    except Exception as e:
-        raise Exception("DATABASE_URL is not set. Make sure it's defined in your .env or container env.")
 
 
 # Quick-start development settings - unsuitable for production
