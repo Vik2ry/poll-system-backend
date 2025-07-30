@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import environ
 from datetime import timedelta
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent 
@@ -26,6 +27,13 @@ DATABASES = {
     'default': env.db(),  # This reads DATABASE_URL
 }
 
+# Only require DATABASE_URL when not running collectstatic (or similar commands)
+if 'collectstatic' not in sys.argv:
+    DATABASES = {
+        'default': env.db(),  # This reads DATABASE_URL
+    }
+else:
+    DATABASES = {}
 
 
 # Quick-start development settings - unsuitable for production
