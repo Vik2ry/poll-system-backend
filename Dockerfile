@@ -16,4 +16,5 @@ WORKDIR /app/poll_sys
 EXPOSE 8000
 
 # Use build.sh as the container entrypoint script
-CMD ["../build.sh"]
+RUN chmod +x /app/poll_sys/build.sh
+CMD ["/app/poll_sys/build.sh"]
