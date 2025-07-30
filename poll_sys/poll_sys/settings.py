@@ -27,6 +27,7 @@ DATABASES = {
     'default': env.db(),  # This reads DATABASE_URL
 }
 
+# Set a dummy DB during build steps like collectstatic
 if 'collectstatic' in sys.argv:
     DATABASES = {
         'default': {
@@ -35,9 +36,13 @@ if 'collectstatic' in sys.argv:
         }
     }
 else:
-    DATABASES = {
-        'default': env.db(),  # Requires DATABASE_URL
-    }
+    # Only attempt to access env.db() when DATABASE_URL is actually set
+    try:
+        DATABASES = {
+            'default': env.db(),  # Requires DATABASE_URL
+        }
+    except Exception as e:
+        raise Exception("DATABASE_URL is not set. Make sure it's defined in your .env or container env.")
 
 
 # Quick-start development settings - unsuitable for production
