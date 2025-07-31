@@ -9,7 +9,10 @@ python manage.py migrate
 
 if [[ $CREATE_SUPERUSER ]]
 then
-    python manage.py createsuperuser --no-input
+    python manage.py createsuperuser \
+        --no-input \
+        --username "$DJANGO_SUPERUSER_USERNAME" \
+        --email "$DJANGO_SUPERUSER_EMAIL"
 fi
 
 # Finally, start the server
