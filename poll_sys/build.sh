@@ -11,7 +11,7 @@ if [[ $CREATE_SUPERUSER ]]
 then
     python manage.py createsuperuser \
         --no-input \
-        --username "$DJANGO_SUPERUSER_USERNAME" \
+        --username "$DJANGO_SUPERUSER_USER" \
         --email "$DJANGO_SUPERUSER_EMAIL"
 fi
 
